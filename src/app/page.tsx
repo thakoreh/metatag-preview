@@ -16,8 +16,11 @@ import { Pricing } from "@/components/landing/Pricing";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
+import { useState } from "react";
 
 function AppContent() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div
       style={{
@@ -34,7 +37,7 @@ function AppContent() {
           zIndex: 50,
           padding: "0 24px",
           height: 60,
-          background: "color-mix(in srgb, var(--card) 85%, transparent)",
+          background: "color-mix(in srgb, var(--card) 90%, transparent)",
           borderBottom: "1px solid var(--border)",
           display: "flex",
           justifyContent: "space-between",
@@ -44,7 +47,7 @@ function AppContent() {
         }}
       >
         <a
-          href="/"
+          href="/metatag-preview/"
           style={{
             display: "flex",
             alignItems: "center",
@@ -79,9 +82,12 @@ function AppContent() {
             MetaTag Preview
           </span>
         </a>
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+
+        {/* Desktop nav links */}
+        <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: 16 }}>
           <a
             href="#features"
+            className="nav-link-desktop"
             style={{
               color: "var(--body)",
               textDecoration: "none",
@@ -93,6 +99,7 @@ function AppContent() {
           </a>
           <a
             href="#pricing"
+            className="nav-link-desktop"
             style={{
               color: "var(--body)",
               textDecoration: "none",
@@ -112,14 +119,89 @@ function AppContent() {
               textDecoration: "none",
               fontSize: 14,
               fontWeight: 600,
-              transition: "opacity 0.2s",
             }}
           >
             Open Editor
           </a>
           <ThemeToggle />
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="mobile-hamburger"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{
+            display: "none",
+            padding: 8,
+            border: "none",
+            background: "transparent",
+            color: "var(--heading)",
+            cursor: "pointer",
+          }}
+          aria-label="Menu"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            {mobileMenuOpen ? (
+              <>
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </>
+            ) : (
+              <>
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </>
+            )}
+          </svg>
+        </button>
       </nav>
+
+      {/* Mobile menu dropdown */}
+      {mobileMenuOpen && (
+        <div
+          className="mobile-menu-dropdown"
+          style={{
+            position: "fixed",
+            top: 60,
+            left: 0,
+            right: 0,
+            zIndex: 40,
+            background: "var(--card)",
+            borderBottom: "1px solid var(--border)",
+            padding: "16px 24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}
+        >
+          <a href="#features" onClick={() => setMobileMenuOpen(false)} style={{ color: "var(--body)", textDecoration: "none", fontSize: 16, fontWeight: 500, padding: "8px 0" }}>
+            Features
+          </a>
+          <a href="#pricing" onClick={() => setMobileMenuOpen(false)} style={{ color: "var(--body)", textDecoration: "none", fontSize: 16, fontWeight: 500, padding: "8px 0" }}>
+            Pricing
+          </a>
+          <a
+            href="#editor"
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              padding: "12px",
+              borderRadius: 8,
+              background: "var(--primary)",
+              color: "#fff",
+              textDecoration: "none",
+              fontSize: 15,
+              fontWeight: 600,
+              textAlign: "center",
+            }}
+          >
+            Open Editor
+          </a>
+          <div style={{ padding: "8px 0" }}>
+            <ThemeToggle />
+          </div>
+        </div>
+      )}
 
       {/* Landing Sections */}
       <Hero />
@@ -138,7 +220,7 @@ function AppContent() {
           background: "var(--bg-dark)",
         }}
       >
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: 48 }}>
             <div
               style={{
@@ -175,15 +257,7 @@ function AppContent() {
             </p>
           </div>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "380px 1fr",
-              gap: 24,
-              alignItems: "start",
-            }}
-            data-grid="editor"
-          >
+          <div data-grid="editor" style={{ display: "grid", gridTemplateColumns: "400px 1fr", gap: 24, alignItems: "start" }}>
             {/* Left: Editor */}
             <MetaEditor />
 
@@ -193,6 +267,7 @@ function AppContent() {
                 display: "flex",
                 flexDirection: "column",
                 gap: 24,
+                minWidth: 0,
               }}
             >
               <div

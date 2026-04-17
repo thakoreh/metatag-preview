@@ -88,6 +88,28 @@ a {
 
 /* ===== Mobile Responsive Grids using Attribute Selectors ===== */
 
+/* Nav: hide desktop links on mobile, show hamburger */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-hamburger {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-hamburger {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 /* Stats bar: 4 cols → 2 cols on mobile */
 [data-grid="stats"] {
   display: grid;
