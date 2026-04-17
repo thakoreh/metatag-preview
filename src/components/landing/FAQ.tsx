@@ -40,6 +40,7 @@ export function FAQ() {
 
   return (
     <section
+      id="faq"
       style={{
         padding: "100px 24px",
       }}

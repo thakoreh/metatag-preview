@@ -39,6 +39,7 @@ const plans = [
 export function Pricing() {
   return (
     <section
+      id="pricing"
       style={{
         padding: "100px 24px",
         background: "var(--bg-dark)",

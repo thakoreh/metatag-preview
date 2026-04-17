@@ -3,10 +3,10 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const stats = [
-  { label: "Meta Tags Generated", value: 48500, suffix: "+" },
-  { label: "Happy Users", value: 12400, suffix: "+" },
-  { label: "Websites Previewed", value: 32000, suffix: "+" },
-  { label: "Countries", value: 140, suffix: "+" },
+  { label: "Meta Tags Generated", value: 48500, suffix: "+", display: "48,500+" },
+  { label: "Happy Users", value: 12400, suffix: "+", display: "12,400+" },
+  { label: "Websites Previewed", value: 32000, suffix: "+", display: "32,000+" },
+  { label: "Countries", value: 140, suffix: "+", display: "140+" },
 ];
 
 function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) {
@@ -31,7 +31,7 @@ function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) 
           animate();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -54,7 +54,7 @@ export function StatsBar() {
         padding: "60px 24px",
         borderTop: "1px solid var(--border)",
         borderBottom: "1px solid var(--border)",
-        background: "var(--bg-dark)",
+        background: "var(--card)",
       }}
     >
       <div
@@ -76,6 +76,7 @@ export function StatsBar() {
                 fontSize: 14,
                 color: "var(--body)",
                 marginTop: 8,
+                fontWeight: 500,
               }}
             >
               {stat.label}

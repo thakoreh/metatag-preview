@@ -32,20 +32,24 @@ function AppContent() {
           position: "sticky",
           top: 0,
           zIndex: 50,
-          padding: "12px 24px",
-          background: "var(--card)",
+          padding: "0 24px",
+          height: 60,
+          background: "color-mix(in srgb, var(--card) 85%, transparent)",
           borderBottom: "1px solid var(--border)",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          backdropFilter: "blur(12px)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
         }}
       >
-        <div
+        <a
+          href="/"
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 8,
+            gap: 10,
+            textDecoration: "none",
           }}
         >
           <div
@@ -53,7 +57,7 @@ function AppContent() {
               width: 32,
               height: 32,
               borderRadius: 8,
-              background: "var(--primary)",
+              background: "linear-gradient(135deg, #6366f1, #818cf8)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -68,23 +72,47 @@ function AppContent() {
             style={{
               fontWeight: 700,
               color: "var(--heading)",
-              fontSize: 18,
+              fontSize: 17,
+              letterSpacing: "-0.01em",
             }}
           >
             MetaTag Preview
           </span>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        </a>
+        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <a
+            href="#features"
+            style={{
+              color: "var(--body)",
+              textDecoration: "none",
+              fontSize: 14,
+              fontWeight: 500,
+            }}
+          >
+            Features
+          </a>
+          <a
+            href="#pricing"
+            style={{
+              color: "var(--body)",
+              textDecoration: "none",
+              fontSize: 14,
+              fontWeight: 500,
+            }}
+          >
+            Pricing
+          </a>
           <a
             href="#editor"
             style={{
-              padding: "8px 16px",
+              padding: "8px 18px",
               borderRadius: 8,
               background: "var(--primary)",
               color: "#fff",
               textDecoration: "none",
               fontSize: 14,
               fontWeight: 600,
+              transition: "opacity 0.2s",
             }}
           >
             Open Editor

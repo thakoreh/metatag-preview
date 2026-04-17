@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useApp } from "@/context/AppContext";
 
 function TwitterPreview() {
@@ -420,9 +421,102 @@ function SlackPreview() {
   );
 }
 
+function LinkedInPreview() {
+  const { state } = useApp();
+  const { meta } = state;
+  const domain = meta.url
+    ? (() => {
+        try {
+          return new URL(meta.url).hostname;
+        } catch {
+          return "example.com";
+        }
+      })()
+    : "example.com";
+
+  return (
+    <div
+      style={{
+        borderRadius: 12,
+        border: "1px solid var(--border)",
+        overflow: "hidden",
+        background: "var(--card)",
+        maxWidth: 500,
+      }}
+    >
+      {meta.ogImageUrl && (
+        <div
+          style={{
+            width: "100%",
+            height: 260,
+            background: "var(--bg-dark)",
+            overflow: "hidden",
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={meta.ogImageUrl}
+            alt=""
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
+      )}
+      <div
+        style={{
+          padding: "12px 14px",
+          background: "var(--bg-dark)",
+          borderTop: "1px solid var(--border)",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 14,
+            fontWeight: 600,
+            color: "var(--heading)",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {meta.title || "Page Title"}
+        </div>
+        <div
+          style={{
+            fontSize: 13,
+            color: "var(--body)",
+            marginTop: 2,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {meta.description || "Page description"}
+        </div>
+        <div
+          style={{
+            fontSize: 12,
+            color: "var(--body)",
+            opacity: 0.6,
+            marginTop: 4,
+            display: "flex",
+            alignItems: "center",
+            gap: 4,
+          }}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--body)" opacity="0.5">
+            <circle cx="12" cy="12" r="10" />
+          </svg>
+          {domain}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const tabs = [
   { id: "twitter", label: "Twitter / X" },
   { id: "facebook", label: "Facebook" },
+  { id: "linkedin", label: "LinkedIn" },
   { id: "google", label: "Google" },
   { id: "slack", label: "Slack" },
 ] as const;
@@ -477,6 +571,7 @@ export default function LivePreviews() {
       <div style={{ padding: "8px 0" }}>
         {activeTab === "twitter" && <TwitterPreview />}
         {activeTab === "facebook" && <FacebookPreview />}
+        {activeTab === "linkedin" && <LinkedInPreview />}
         {activeTab === "google" && <GooglePreview />}
         {activeTab === "slack" && <SlackPreview />}
       </div>
@@ -484,4 +579,4 @@ export default function LivePreviews() {
   );
 }
 
-import React from "react";
+

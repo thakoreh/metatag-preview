@@ -187,6 +187,20 @@ a {
   }
 }
 
+/* Footer: 3 cols → 1 on mobile */
+[data-grid="footer"] {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: 640px) {
+  [data-grid="footer"] {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
 /* ===== Smooth Transitions for Theme ===== */
 body,
 nav,
