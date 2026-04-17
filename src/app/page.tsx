@@ -26,7 +26,13 @@ function AppContent() {
       style={{
         minHeight: "100vh",
         background: "var(--bg)",
-        color: "var(--body)",
+        color: "#525f7f",
+        fontFamily:
+          'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+        fontWeight: 400,
+        lineHeight: 1.6,
+        WebkitFontSmoothing: "antialiased",
+        MozOsxFontSmoothing: "grayscale",
       }}
     >
       {/* Nav */}
@@ -35,17 +41,19 @@ function AppContent() {
           position: "sticky",
           top: 0,
           zIndex: 50,
-          padding: "0 24px",
-          height: 60,
-          background: "color-mix(in srgb, var(--card) 90%, transparent)",
-          borderBottom: "1px solid var(--border)",
+          height: 64,
+          padding: "0 32px",
+          background: "rgba(255, 255, 255, 0.92)",
+          borderBottom: "1px solid #e3e8ee",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          maxWidth: "100%",
         }}
       >
+        {/* Logo */}
         <a
           href="/metatag-preview/"
           style={{
@@ -57,26 +65,27 @@ function AppContent() {
         >
           <div
             style={{
-              width: 32,
-              height: 32,
-              borderRadius: 8,
-              background: "linear-gradient(135deg, #6366f1, #818cf8)",
+              width: 28,
+              height: 28,
+              borderRadius: 6,
+              background: "linear-gradient(135deg, #533afd 0%, #7a5afd 100%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               color: "#fff",
-              fontSize: 18,
-              fontWeight: 800,
+              fontSize: 15,
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
             }}
           >
             M
           </div>
           <span
             style={{
-              fontWeight: 700,
-              color: "var(--heading)",
-              fontSize: 17,
-              letterSpacing: "-0.01em",
+              fontWeight: 600,
+              color: "#0a2540",
+              fontSize: 15,
+              letterSpacing: "-0.025em",
             }}
           >
             MetaTag Preview
@@ -84,15 +93,19 @@ function AppContent() {
         </a>
 
         {/* Desktop nav links */}
-        <div className="desktop-nav" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div
+          className="desktop-nav"
+          style={{ display: "flex", alignItems: "center", gap: 24 }}
+        >
           <a
             href="#features"
             className="nav-link-desktop"
             style={{
-              color: "var(--body)",
+              color: "#525f7f",
               textDecoration: "none",
               fontSize: 14,
               fontWeight: 500,
+              transition: "color 0.15s ease",
             }}
           >
             Features
@@ -101,10 +114,11 @@ function AppContent() {
             href="#pricing"
             className="nav-link-desktop"
             style={{
-              color: "var(--body)",
+              color: "#525f7f",
               textDecoration: "none",
               fontSize: 14,
               fontWeight: 500,
+              transition: "color 0.15s ease",
             }}
           >
             Pricing
@@ -112,13 +126,20 @@ function AppContent() {
           <a
             href="#editor"
             style={{
-              padding: "8px 18px",
-              borderRadius: 8,
-              background: "var(--primary)",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "10px 20px",
+              borderRadius: 6,
+              background: "#533afd",
               color: "#fff",
               textDecoration: "none",
               fontSize: 14,
               fontWeight: 600,
+              letterSpacing: "-0.01em",
+              lineHeight: 1,
+              transition: "background 0.15s ease, box-shadow 0.15s ease",
+              boxShadow: "0 1px 3px rgba(83, 58, 253, 0.2)",
             }}
           >
             Open Editor
@@ -135,12 +156,22 @@ function AppContent() {
             padding: 8,
             border: "none",
             background: "transparent",
-            color: "var(--heading)",
+            color: "#0a2540",
             cursor: "pointer",
+            borderRadius: 6,
           }}
           aria-label="Menu"
         >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             {mobileMenuOpen ? (
               <>
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -163,41 +194,71 @@ function AppContent() {
           className="mobile-menu-dropdown"
           style={{
             position: "fixed",
-            top: 60,
+            top: 64,
             left: 0,
             right: 0,
             zIndex: 40,
-            background: "var(--card)",
-            borderBottom: "1px solid var(--border)",
+            background: "#ffffff",
+            borderBottom: "1px solid #e3e8ee",
             padding: "16px 24px",
             display: "flex",
             flexDirection: "column",
-            gap: 12,
+            gap: 4,
+            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.06)",
           }}
         >
-          <a href="#features" onClick={() => setMobileMenuOpen(false)} style={{ color: "var(--body)", textDecoration: "none", fontSize: 16, fontWeight: 500, padding: "8px 0" }}>
+          <a
+            href="#features"
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              color: "#525f7f",
+              textDecoration: "none",
+              fontSize: 15,
+              fontWeight: 500,
+              padding: "10px 12px",
+              borderRadius: 6,
+              display: "block",
+              transition: "background 0.1s ease",
+            }}
+          >
             Features
           </a>
-          <a href="#pricing" onClick={() => setMobileMenuOpen(false)} style={{ color: "var(--body)", textDecoration: "none", fontSize: 16, fontWeight: 500, padding: "8px 0" }}>
+          <a
+            href="#pricing"
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              color: "#525f7f",
+              textDecoration: "none",
+              fontSize: 15,
+              fontWeight: 500,
+              padding: "10px 12px",
+              borderRadius: 6,
+              display: "block",
+              transition: "background 0.1s ease",
+            }}
+          >
             Pricing
           </a>
           <a
             href="#editor"
             onClick={() => setMobileMenuOpen(false)}
             style={{
-              padding: "12px",
-              borderRadius: 8,
-              background: "var(--primary)",
+              display: "block",
+              padding: "10px 20px",
+              borderRadius: 6,
+              background: "#533afd",
               color: "#fff",
               textDecoration: "none",
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: 600,
               textAlign: "center",
+              letterSpacing: "-0.01em",
+              marginTop: 4,
             }}
           >
             Open Editor
           </a>
-          <div style={{ padding: "8px 0" }}>
+          <div style={{ padding: "8px 12px" }}>
             <ThemeToggle />
           </div>
         </div>
@@ -216,20 +277,26 @@ function AppContent() {
       <section
         id="editor"
         style={{
-          padding: "80px 24px",
-          background: "var(--bg-dark)",
+          padding: "96px 24px",
+          background: "#f6f9fc",
+          borderTop: "1px solid #e3e8ee",
         }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
+          {/* Section heading */}
+          <div style={{ textAlign: "center", marginBottom: 56 }}>
             <div
               style={{
-                fontSize: 13,
+                display: "inline-block",
+                fontSize: 12,
                 fontWeight: 600,
-                color: "var(--primary)",
+                color: "#533afd",
                 textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                marginBottom: 12,
+                letterSpacing: "0.08em",
+                marginBottom: 16,
+                padding: "4px 12px",
+                background: "rgba(83, 58, 253, 0.06)",
+                borderRadius: 100,
               }}
             >
               Editor
@@ -237,27 +304,40 @@ function AppContent() {
             <h2
               style={{
                 fontSize: "clamp(28px, 4vw, 40px)",
-                fontWeight: 800,
-                color: "var(--heading)",
+                fontWeight: 600,
+                color: "#0a2540",
                 marginBottom: 16,
-                letterSpacing: "-0.02em",
+                letterSpacing: "-0.025em",
+                lineHeight: 1.2,
+                marginTop: 0,
               }}
             >
               Craft Your Meta Tags
             </h2>
             <p
               style={{
-                fontSize: 16,
-                color: "var(--body)",
-                maxWidth: 500,
+                fontSize: 17,
+                color: "#525f7f",
+                maxWidth: 520,
                 margin: "0 auto",
+                lineHeight: 1.6,
+                fontWeight: 400,
               }}
             >
-              Fill in the details below and watch the live previews update instantly.
+              Fill in the details below and watch the live previews update
+              instantly.
             </p>
           </div>
 
-          <div data-grid="editor" style={{ display: "grid", gridTemplateColumns: "400px 1fr", gap: 24, alignItems: "start" }}>
+          <div
+            data-grid="editor"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "400px 1fr",
+              gap: 24,
+              alignItems: "start",
+            }}
+          >
             {/* Left: Editor */}
             <MetaEditor />
 
@@ -273,17 +353,20 @@ function AppContent() {
               <div
                 style={{
                   padding: 24,
-                  background: "var(--card)",
-                  borderRadius: 16,
-                  border: "1px solid var(--border)",
+                  background: "#ffffff",
+                  borderRadius: 8,
+                  border: "1px solid #e3e8ee",
+                  boxShadow:
+                    "0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)",
                 }}
               >
                 <h3
                   style={{
-                    fontSize: 16,
-                    fontWeight: 700,
-                    color: "var(--heading)",
+                    fontSize: 15,
+                    fontWeight: 600,
+                    color: "#0a2540",
                     margin: "0 0 16px",
+                    letterSpacing: "-0.01em",
                   }}
                 >
                   Live Previews
